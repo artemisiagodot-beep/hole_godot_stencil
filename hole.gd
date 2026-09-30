@@ -10,18 +10,19 @@ class_name Hole
 @onready var floor_donut_stopper: StaticBody3D = $FloorDonutStopper
 @onready var donut_stopper_collider: CollisionShape3D = $FloorDonutStopper/DonutStopperCollider
 
-
+@export var game_system: GameSystem
 @export var move_force_speed: float = 20
 var base_size = 1.0
 
 func _physics_process(_delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	if !input_dir.is_zero_approx():
+		if game_system.player_moved == true:
+			pass
+		else:
+			game_system.player_moved = true
 	var direction := Vector3(input_dir.x, 0, input_dir.y)
 	apply_central_force(direction * move_force_speed)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		increase_size()
 
 func increase_size() -> void:
 	base_size += 0.2

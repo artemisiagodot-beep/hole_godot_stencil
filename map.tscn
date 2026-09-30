@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd01indl502mg" path="res://game_logic/scaler.gd" id="1_e0an3"]
 [ext_resource type="PackedScene" uid="uid://box113e1l8wpl" path="res://hole.tscn" id="1_wijl4"]
-[ext_resource type="PackedScene" uid="uid://t20pfyc23a2w" path="res://test_ball.tscn" id="2_e0an3"]
+[ext_resource type="PackedScene" uid="uid://kgfi6i3m72mk" path="res://scenes/ball_stack.tscn" id="3_e0an3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aa2ju"]
 ground_bottom_color = Color(0, 0, 0, 1)
@@ -25,7 +25,7 @@ stencil_compare = 5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hcuab"]
 material = SubResource("StandardMaterial3D_dtvub")
-size = Vector2(20, 20)
+size = Vector2(30, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wijl4"]
 size = Vector3(20, 0.1, 20)
@@ -39,7 +39,7 @@ size = Vector3(1, 9.416992, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4m0b"]
 size = Vector3(20, 5, 20)
 
-[node name="Map" type="Node3D" unique_id=895028755]
+[node name="Level1" type="Node3D" unique_id=895028755]
 
 [node name="GameSystem" type="Node" parent="." unique_id=441562132]
 script = ExtResource("1_e0an3")
@@ -48,7 +48,6 @@ metadata/_custom_type_script = "uid://cd01indl502mg"
 [node name="Timer" type="Timer" parent="GameSystem" unique_id=1252517893]
 wait_time = 50.0
 one_shot = true
-autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameSystem" unique_id=1273529458]
 
@@ -113,14 +112,47 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "You Won!"
 
+[node name="StartMenu" type="Control" parent="GameSystem/CanvasLayer" unique_id=385952485]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameSystem/CanvasLayer/StartMenu" unique_id=218775192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5529412, 0.8, 0, 0.5372549)
+
+[node name="Task" type="Label" parent="GameSystem/CanvasLayer/StartMenu" unique_id=1438321258]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=912033060]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=154425089]
 environment = SubResource("Environment_yldow")
 
-[node name="Hole" parent="." unique_id=1041332360 instance=ExtResource("1_wijl4")]
+[node name="Hole" parent="." unique_id=1041332360 node_paths=PackedStringArray("game_system") instance=ExtResource("1_wijl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034531653, 8.219687)
+game_system = NodePath("../GameSystem")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1516674096]
 
@@ -149,298 +181,7 @@ shape = SubResource("BoxShape3D_dtvub")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 shape = SubResource("BoxShape3D_dtvub")
 
-[node name="Balls" type="Node3D" parent="." unique_id=1259448560]
-
-[node name="TestBall" parent="Balls" unique_id=776585098 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 7.3350387)
-
-[node name="TestBall2" parent="Balls" unique_id=1811132835 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 7.335)
-
-[node name="TestBall3" parent="Balls" unique_id=1265416582 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 7.335)
-
-[node name="TestBall4" parent="Balls" unique_id=291586554 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 7.335)
-
-[node name="TestBall5" parent="Balls" unique_id=1857216194 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 7.335)
-
-[node name="TestBall6" parent="Balls" unique_id=1704615321 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 7.335)
-
-[node name="TestBall7" parent="Balls" unique_id=133323528 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 6.535)
-
-[node name="TestBall8" parent="Balls" unique_id=875641486 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 6.535)
-
-[node name="TestBall9" parent="Balls" unique_id=692894285 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 6.535)
-
-[node name="TestBall10" parent="Balls" unique_id=276093731 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 6.535)
-
-[node name="TestBall11" parent="Balls" unique_id=189377128 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 6.535)
-
-[node name="TestBall12" parent="Balls" unique_id=1600425991 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 6.535)
-
-[node name="TestBall13" parent="Balls" unique_id=1338709645 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 5.735)
-
-[node name="TestBall14" parent="Balls" unique_id=1031845388 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 5.735)
-
-[node name="TestBall15" parent="Balls" unique_id=80079521 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 5.735)
-
-[node name="TestBall16" parent="Balls" unique_id=1902266411 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 5.735)
-
-[node name="TestBall17" parent="Balls" unique_id=1713326848 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 5.735)
-
-[node name="TestBall18" parent="Balls" unique_id=770072913 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 5.735)
-
-[node name="TestBall19" parent="Balls" unique_id=1227959888 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 4.935)
-
-[node name="TestBall20" parent="Balls" unique_id=199238605 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 4.935)
-
-[node name="TestBall21" parent="Balls" unique_id=231025654 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 4.935)
-
-[node name="TestBall22" parent="Balls" unique_id=1813989763 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 4.935)
-
-[node name="TestBall23" parent="Balls" unique_id=1062141620 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 4.935)
-
-[node name="TestBall24" parent="Balls" unique_id=2029481487 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 4.935)
-
-[node name="TestBall25" parent="Balls" unique_id=19169774 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 7.3350387)
-
-[node name="TestBall26" parent="Balls" unique_id=1690354185 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 7.335)
-
-[node name="TestBall27" parent="Balls" unique_id=768357414 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 7.335)
-
-[node name="TestBall28" parent="Balls" unique_id=1986463527 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 7.335)
-
-[node name="TestBall29" parent="Balls" unique_id=806297940 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 7.335)
-
-[node name="TestBall30" parent="Balls" unique_id=483237583 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 7.335)
-
-[node name="TestBall31" parent="Balls" unique_id=313739320 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 6.535)
-
-[node name="TestBall32" parent="Balls" unique_id=1655888898 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 6.535)
-
-[node name="TestBall33" parent="Balls" unique_id=1220089659 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 6.535)
-
-[node name="TestBall34" parent="Balls" unique_id=1981616127 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 6.535)
-
-[node name="TestBall35" parent="Balls" unique_id=105964971 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 6.535)
-
-[node name="TestBall36" parent="Balls" unique_id=594765625 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 6.535)
-
-[node name="TestBall37" parent="Balls" unique_id=67632276 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 5.735)
-
-[node name="TestBall38" parent="Balls" unique_id=2030779565 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 5.735)
-
-[node name="TestBall39" parent="Balls" unique_id=1775689815 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 5.735)
-
-[node name="TestBall40" parent="Balls" unique_id=457823828 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 5.735)
-
-[node name="TestBall41" parent="Balls" unique_id=1442887093 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 5.735)
-
-[node name="TestBall42" parent="Balls" unique_id=1674622284 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 5.735)
-
-[node name="TestBall43" parent="Balls" unique_id=594225410 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 4.935)
-
-[node name="TestBall44" parent="Balls" unique_id=579556215 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 4.935)
-
-[node name="TestBall45" parent="Balls" unique_id=2091847457 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 4.935)
-
-[node name="TestBall46" parent="Balls" unique_id=1522983966 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 4.935)
-
-[node name="TestBall47" parent="Balls" unique_id=1131604060 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 4.935)
-
-[node name="TestBall48" parent="Balls" unique_id=586556756 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 4.935)
-
-[node name="Balls2" type="Node3D" parent="." unique_id=878484382]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-
-[node name="TestBall" parent="Balls2" unique_id=326603649 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 7.3350387)
-
-[node name="TestBall2" parent="Balls2" unique_id=1852376192 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 7.335)
-
-[node name="TestBall3" parent="Balls2" unique_id=1342520081 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 7.335)
-
-[node name="TestBall4" parent="Balls2" unique_id=1864444612 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 7.335)
-
-[node name="TestBall5" parent="Balls2" unique_id=1873615484 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 7.335)
-
-[node name="TestBall6" parent="Balls2" unique_id=927517322 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 7.335)
-
-[node name="TestBall7" parent="Balls2" unique_id=2074340841 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 6.535)
-
-[node name="TestBall8" parent="Balls2" unique_id=1250942810 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 6.535)
-
-[node name="TestBall9" parent="Balls2" unique_id=397540628 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 6.535)
-
-[node name="TestBall10" parent="Balls2" unique_id=1772319410 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 6.535)
-
-[node name="TestBall11" parent="Balls2" unique_id=1462693146 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 6.535)
-
-[node name="TestBall12" parent="Balls2" unique_id=1550102160 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 6.535)
-
-[node name="TestBall13" parent="Balls2" unique_id=1128476661 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 5.735)
-
-[node name="TestBall14" parent="Balls2" unique_id=1820203991 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 5.735)
-
-[node name="TestBall15" parent="Balls2" unique_id=1255042003 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 5.735)
-
-[node name="TestBall16" parent="Balls2" unique_id=1897351553 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 5.735)
-
-[node name="TestBall17" parent="Balls2" unique_id=404370183 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 5.735)
-
-[node name="TestBall18" parent="Balls2" unique_id=774232231 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 5.735)
-
-[node name="TestBall19" parent="Balls2" unique_id=1682762565 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 0.34999982, 4.935)
-
-[node name="TestBall20" parent="Balls2" unique_id=584147256 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 0.35, 4.935)
-
-[node name="TestBall21" parent="Balls2" unique_id=290560202 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 0.35, 4.935)
-
-[node name="TestBall22" parent="Balls2" unique_id=1978282759 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 0.35, 4.935)
-
-[node name="TestBall23" parent="Balls2" unique_id=2050533453 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 0.35, 4.935)
-
-[node name="TestBall24" parent="Balls2" unique_id=1815423325 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 0.35, 4.935)
-
-[node name="TestBall25" parent="Balls2" unique_id=857176348 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 7.3350387)
-
-[node name="TestBall26" parent="Balls2" unique_id=1993713733 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 7.335)
-
-[node name="TestBall27" parent="Balls2" unique_id=1401399023 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 7.335)
-
-[node name="TestBall28" parent="Balls2" unique_id=866145726 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 7.335)
-
-[node name="TestBall29" parent="Balls2" unique_id=1061504552 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 7.335)
-
-[node name="TestBall30" parent="Balls2" unique_id=72409032 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 7.335)
-
-[node name="TestBall31" parent="Balls2" unique_id=1253632265 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 6.535)
-
-[node name="TestBall32" parent="Balls2" unique_id=2064390307 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 6.535)
-
-[node name="TestBall33" parent="Balls2" unique_id=1929398681 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 6.535)
-
-[node name="TestBall34" parent="Balls2" unique_id=336633485 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 6.535)
-
-[node name="TestBall35" parent="Balls2" unique_id=1797859476 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 6.535)
-
-[node name="TestBall36" parent="Balls2" unique_id=601564377 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 6.535)
-
-[node name="TestBall37" parent="Balls2" unique_id=1220188484 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 5.735)
-
-[node name="TestBall38" parent="Balls2" unique_id=1048657425 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 5.735)
-
-[node name="TestBall39" parent="Balls2" unique_id=343804753 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 5.735)
-
-[node name="TestBall40" parent="Balls2" unique_id=1484629541 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 5.735)
-
-[node name="TestBall41" parent="Balls2" unique_id=1838046801 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 5.735)
-
-[node name="TestBall42" parent="Balls2" unique_id=1840174184 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 5.735)
-
-[node name="TestBall43" parent="Balls2" unique_id=1908470912 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5972385, 1.15, 4.935)
-
-[node name="TestBall44" parent="Balls2" unique_id=1948766187 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.397, 1.15, 4.935)
-
-[node name="TestBall45" parent="Balls2" unique_id=141023584 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.197, 1.15, 4.935)
-
-[node name="TestBall46" parent="Balls2" unique_id=1616142328 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.997, 1.15, 4.935)
-
-[node name="TestBall47" parent="Balls2" unique_id=1480761477 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.797, 1.15, 4.935)
-
-[node name="TestBall48" parent="Balls2" unique_id=378505273 instance=ExtResource("2_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.597, 1.15, 4.935)
+[node name="BallStack" parent="." unique_id=2026382181 instance=ExtResource("3_e0an3")]
 
 [node name="Collector" type="Area3D" parent="." unique_id=1483481937]
 collision_layer = 0
@@ -450,6 +191,15 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.267272, 0)
 shape = SubResource("BoxShape3D_r4m0b")
 debug_color = Color(0.9863375, 0, 0.32941782, 0.41960785)
+
+[node name="BallStack2" parent="." unique_id=2110960260 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.104557, 0, 0)
+
+[node name="BallStack3" parent="." unique_id=238949685 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.104557, 0, -9.260076)
+
+[node name="BallStack4" parent="." unique_id=2086904466 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8311758, 0, -9.260076)
 
 [connection signal="timeout" from="GameSystem/Timer" to="GameSystem" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Collector" to="GameSystem" method="_on_collector_body_entered"]

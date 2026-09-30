@@ -11,8 +11,11 @@ config_version=5
 [application]
 
 config/name="Hole"
-run/main_scene="uid://dias6snj1kxvb"
+run/main_scene="uid://bqslavymdgbfo"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(0.15703139, 0.3602558, 0.37258017, 1)
+boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [display]
