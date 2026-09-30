@@ -19,6 +19,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_activator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("fallable"):
+		body.freeze = false
 		body.set_collision_mask_value(1, false)
 		print("found body")
 

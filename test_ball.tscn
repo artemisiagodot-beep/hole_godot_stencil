@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://t20pfyc23a2w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4m0b"]
-albedo_color = Color(1, 1, 0, 1)
+albedo_color = Color(0.63902384, 0.63902324, 5.7756904e-07, 1)
+metallic = 0.66
+metallic_specular = 0.15
+roughness = 0.18
 
 [sub_resource type="SphereMesh" id="SphereMesh_hcuab"]
 material = SubResource("StandardMaterial3D_r4m0b")
@@ -12,8 +15,11 @@ height = 0.8
 radius = 0.4
 
 [node name="TestBall" type="RigidBody3D" unique_id=776585098 groups=["fallable"]]
+collision_layer = 2
+collision_mask = 3
 mass = 0.1
 can_sleep = false
+freeze = true
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1211037963]
 mesh = SubResource("SphereMesh_hcuab")
