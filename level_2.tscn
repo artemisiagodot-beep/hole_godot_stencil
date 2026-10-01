@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://c030bssualgeh"]
+
+[ext_resource type="Script" uid="uid://cbwei03n7wiab" path="res://game_system.gd" id="1_xdadj"]
+[ext_resource type="PackedScene" uid="uid://box113e1l8wpl" path="res://hole.tscn" id="2_xdadj"]
+[ext_resource type="PackedScene" uid="uid://dmxtsh2v2p1em" path="res://scenes/test_pillar.tscn" id="3_xdadj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aa2ju"]
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_hxd5n"]
+sky_material = SubResource("ProceduralSkyMaterial_aa2ju")
+
+[sub_resource type="Environment" id="Environment_yldow"]
+background_mode = 2
+sky = SubResource("Sky_hxd5n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtvub"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0.32156864, 0.7411765, 0.25882354, 1)
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hcuab"]
+material = SubResource("StandardMaterial3D_dtvub")
+size = Vector2(30, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wijl4"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcuab"]
+size = Vector3(20, 9.389648, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dtvub"]
+size = Vector3(1, 9.416992, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4m0b"]
+size = Vector3(20, 5, 20)
+
+[node name="Level2" type="Node3D" unique_id=895028755]
+
+[node name="GameSystem" type="Node" parent="." unique_id=441562132]
+script = ExtResource("1_xdadj")
+win_score = 8
+metadata/_custom_type_script = "uid://cd01indl502mg"
+
+[node name="Timer" type="Timer" parent="GameSystem" unique_id=1252517893]
+wait_time = 80.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameSystem" unique_id=1273529458]
+
+[node name="Control" type="Control" parent="GameSystem/CanvasLayer" unique_id=1612074544]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Label" parent="GameSystem/CanvasLayer/Control" unique_id=945333244]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 70
+text = "0.00"
+
+[node name="Score" type="Label" parent="GameSystem/CanvasLayer/Control" unique_id=1302553545]
+layout_mode = 1
+offset_right = 48.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 70
+text = "Score:"
+
+[node name="WinMenu" type="Control" parent="GameSystem/CanvasLayer" unique_id=1384130047]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameSystem/CanvasLayer/WinMenu" unique_id=1318106292]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5809582, 0.5122337, 0.5154306, 0.3882353)
+
+[node name="Label" type="Label" parent="GameSystem/CanvasLayer/WinMenu" unique_id=1739856611]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "You Won!"
+
+[node name="StartMenu" type="Control" parent="GameSystem/CanvasLayer" unique_id=385952485]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameSystem/CanvasLayer/StartMenu" unique_id=218775192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5529412, 0.8, 0, 0.5372549)
+
+[node name="Task" type="Label" parent="GameSystem/CanvasLayer/StartMenu" unique_id=1438321258]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=912033060]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=154425089]
+environment = SubResource("Environment_yldow")
+
+[node name="Hole" parent="." unique_id=1041332360 node_paths=PackedStringArray("game_system") instance=ExtResource("2_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034531653, 8.219687)
+game_system = NodePath("../GameSystem")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1516674096]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground" unique_id=1916357239]
+mesh = SubResource("PlaneMesh_hcuab")
+
+[node name="GroundCollider" type="CollisionShape3D" parent="Ground" unique_id=2126795957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_wijl4")
+
+[node name="Barriers" type="StaticBody3D" parent="." unique_id=265637658]
+
+[node name="Front" type="CollisionShape3D" parent="Barriers" unique_id=644333148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+shape = SubResource("BoxShape3D_hcuab")
+
+[node name="Back" type="CollisionShape3D" parent="Barriers" unique_id=1315092718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+shape = SubResource("BoxShape3D_hcuab")
+
+[node name="Left" type="CollisionShape3D" parent="Barriers" unique_id=1985175075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+shape = SubResource("BoxShape3D_dtvub")
+
+[node name="Right" type="CollisionShape3D" parent="Barriers" unique_id=1283837506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+shape = SubResource("BoxShape3D_dtvub")
+
+[node name="Collector" type="Area3D" parent="." unique_id=1483481937]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollectorCollider" type="CollisionShape3D" parent="Collector" unique_id=1842048789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.267272, 0)
+shape = SubResource("BoxShape3D_r4m0b")
+debug_color = Color(0.9863375, 0, 0.32941782, 0.41960785)
+
+[node name="TestPillar" parent="." unique_id=776585098 instance=ExtResource("3_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2613637, 0.44999993, 3.5449133)
+
+[node name="TestPillar2" parent="." unique_id=1573004999 instance=ExtResource("3_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.901186, 0.44999993, 3.5449133)
+
+[node name="TestPillar3" parent="." unique_id=804570214 instance=ExtResource("3_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.901186, 0.44999993, -0.45117188)
+
+[node name="TestPillar4" parent="." unique_id=196150160 instance=ExtResource("3_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8192444, 0.44999993, -0.45117188)
+
+[node name="TestPillar5" parent="." unique_id=163670616 instance=ExtResource("3_xdadj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2945, 0.44999993, -0.45117188)
+
+[connection signal="timeout" from="GameSystem/Timer" to="GameSystem" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Collector" to="GameSystem" method="_on_collector_body_entered"]

@@ -8,7 +8,6 @@ class_name Hole
 @onready var activator: Area3D = $Activator
 @onready var activator_collider: CollisionShape3D = $Activator/ActivatorCollider
 @onready var floor_donut_stopper: StaticBody3D = $FloorDonutStopper
-@onready var donut_stopper_collider: CollisionShape3D = $FloorDonutStopper/DonutStopperCollider
 
 @export var game_system: GameSystem
 @export var move_force_speed: float = 20
@@ -40,9 +39,13 @@ func increase_size() -> void:
 
 func _on_activator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("fallable"):
-		body.freeze = false
 		body.set_collision_mask_value(1, false)
 
 func _on_activator_body_exited(body: Node3D) -> void:
 	if body.is_in_group("fallable"):
 		body.set_collision_mask_value(1, true)
+
+
+func _on_unfreeze_body_entered(body: Node3D) -> void:
+	if body.is_in_group("fallable"):
+		body.freeze = false

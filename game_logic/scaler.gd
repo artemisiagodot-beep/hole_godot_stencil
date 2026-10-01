@@ -1,5 +1,6 @@
 extends Node
-class_name GameSystem 
+class_name GameSystem
+
 @onready var hole: Hole = $"../Hole"
 @onready var time: Timer = $Timer
 
