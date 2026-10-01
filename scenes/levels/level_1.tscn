@@ -42,9 +42,11 @@ size = Vector3(1, 9.416992, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4m0b"]
 size = Vector3(20, 5, 20)
 
-[node name="Level1" type="Node3D" unique_id=895028755]
+[node name="Level1" type="Node3D" unique_id=895028755 node_paths=PackedStringArray("game_system", "hole")]
 process_mode = 3
 script = ExtResource("1_fcfvj")
+game_system = NodePath("GameSystem")
+hole = NodePath("Hole")
 
 [node name="GameSystem" type="Node" parent="." unique_id=441562132 node_paths=PackedStringArray("level_1")]
 process_mode = 1
@@ -188,8 +190,6 @@ shape = SubResource("BoxShape3D_dtvub")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 shape = SubResource("BoxShape3D_dtvub")
 
-[node name="BallStack" parent="." unique_id=2026382181 instance=ExtResource("3_4nkto")]
-
 [node name="Collector" type="Area3D" parent="." unique_id=1483481937]
 collision_layer = 0
 collision_mask = 2
@@ -198,6 +198,8 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.267272, 0)
 shape = SubResource("BoxShape3D_r4m0b")
 debug_color = Color(0.9863375, 0, 0.32941782, 0.41960785)
+
+[node name="BallStack" parent="." unique_id=2026382181 instance=ExtResource("3_4nkto")]
 
 [node name="BallStack2" parent="." unique_id=2110960260 instance=ExtResource("3_4nkto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.104557, 0, 0)
@@ -213,9 +215,10 @@ stream = ExtResource("4_4nkto")
 autoplay = true
 bus = &"Music"
 
-[node name="2DCanvas" type="CanvasLayer" parent="." unique_id=1827450735]
+[node name="2DCanvas" type="CanvasLayer" parent="." unique_id=1827450735 node_paths=PackedStringArray("level_1")]
 visible = false
 script = ExtResource("5_fcfvj")
+level_1 = NodePath("..")
 
 [node name="PauseMenu" type="Control" parent="2DCanvas" unique_id=1352239689]
 layout_mode = 3

@@ -1,10 +1,15 @@
 extends CanvasLayer
 
+@export var level_1: Node3D
+
 var bus_music = AudioServer.get_bus_index("Music")
 var bus_sfx = AudioServer.get_bus_index("SFX")
 
+
 func _on_resume_pressed() -> void:
 	visible = false
+	level_1.unpause_the_level()
+	
 
 
 func _on_quit_pressed() -> void:

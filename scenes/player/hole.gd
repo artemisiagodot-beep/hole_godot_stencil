@@ -2,18 +2,13 @@ extends RigidBody3D
 class_name Hole
 
 @onready var camera_3d: Camera3D = $Camera3D
-
-
-
 @onready var donut: StaticBody3D = $Donut
 @onready var floor_donut_stopper: StaticBody3D = $FloorDonutStopper
 @onready var inside_collider: StaticBody3D = $InsideCollider
-
 @onready var activator: Area3D = $Activator
 @onready var unfreeze: Area3D = $Unfreeze
 @onready var activator_collider: CollisionShape3D = $Activator/ActivatorCollider
 @onready var cutout_collision: CollisionShape3D = $CutoutCollision
-
 @onready var hole_visual: MeshInstance3D = $HoleVisual
 
 
