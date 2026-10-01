@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqslavymdgbfo"]
 
-[ext_resource type="Script" uid="uid://dv5c1gudjed5b" path="res://start_scene.gd" id="1_cokmr"]
+[ext_resource type="Script" uid="uid://dv5c1gudjed5b" path="res://scenes/start_scene.gd" id="1_cokmr"]
+[ext_resource type="AudioStream" uid="uid://cycd0a6jc1wrt" path="res://music/time_for_adventure.mp3" id="2_3tgnh"]
 
 [node name="StartScene" type="Control" unique_id=326564325]
 layout_mode = 3
@@ -44,5 +45,31 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Exit"
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=212714197]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 50
+text = "Music Volume
+"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Label" unique_id=1425744808]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -85.5
+grow_horizontal = 2
+grow_vertical = 0
+min_value = -80.0
+max_value = 12.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=713716375]
+stream = ExtResource("2_3tgnh")
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Label/HSlider" to="." method="_on_h_slider_value_changed"]

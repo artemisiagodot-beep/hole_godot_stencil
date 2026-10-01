@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dmxtsh2v2p1em"]
 
-[ext_resource type="Script" uid="uid://d3xfkkgep56uy" path="res://test_ball.gd" id="1_n0vxy"]
+[ext_resource type="Script" uid="uid://d3xfkkgep56uy" path="res://scenes/test_ball.gd" id="1_n0vxy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hcuab"]
-size = Vector3(1, 5, 1)
+size = Vector3(0.6, 5, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5gg3"]
-size = Vector3(1, 5, 1)
+size = Vector3(0.6, 5, 0.6)
 
-[node name="TestPillar" type="RigidBody3D" unique_id=776585098 groups=["fallable"]]
+[node name="TestPillar" type="RigidBody3D" unique_id=776585098 groups=["fallable", "pillar"]]
 collision_layer = 2
 collision_mask = 3
 mass = 0.1

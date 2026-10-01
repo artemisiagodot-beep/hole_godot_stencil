@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kgfi6i3m72mk"]
 
-[ext_resource type="PackedScene" uid="uid://t20pfyc23a2w" path="res://test_ball.tscn" id="1_nk536"]
+[ext_resource type="PackedScene" uid="uid://t20pfyc23a2w" path="res://scenes/test_ball.tscn" id="1_nk536"]
 
 [node name="BallStack" type="Node3D" unique_id=2026382181]
 
