@@ -21,6 +21,12 @@ class_name GameSystem
 @export var size_7_treshold: int = 30
 @export var size_8_treshold: int = 40
 @export var size_9_treshold: int = 50
+@export var size_10_treshold: int = 60
+@export var size_11_treshold: int = 70
+@export var size_12_treshold: int = 80
+@export var size_13_treshold: int = 90
+@export var size_14_treshold: int = 100
+@export var size_15_treshold: int = 110
 
 var current_treshold: int = size_2_treshold
 var score : int = 0
@@ -67,6 +73,22 @@ func check_score() -> void:
 		current_treshold = size_9_treshold
 	if score == size_9_treshold:
 		update_score()
+		current_treshold = size_10_treshold
+	if score == size_10_treshold:
+		update_score()
+		current_treshold = size_11_treshold
+	if score == size_11_treshold:
+		update_score()
+		current_treshold = size_12_treshold
+	if score == size_12_treshold:
+		update_score()
+		current_treshold = size_13_treshold
+	if score == size_13_treshold:
+		update_score()
+		current_treshold = size_14_treshold
+	if score == size_14_treshold:
+		update_score()
+		current_treshold = size_15_treshold
 
 func update_score() -> void:
 	size_set_hole()
@@ -91,5 +113,3 @@ func size_set_hole() -> void:
 func xp_bar_calc() -> void:
 	xp_bar.max_value = current_treshold
 	xp_bar.value = score
-	print(str(current_treshold) + ' ' + str(score))
-	

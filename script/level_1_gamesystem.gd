@@ -14,6 +14,7 @@ func _ready() -> void:
 	counter.text = "Left to collect: " +str(balls_to_collect)
 
 
+
 func _on_collector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("ball"):
 		balls_to_collect -= 1
@@ -29,4 +30,4 @@ func _on_collector_body_entered(body: Node3D) -> void:
 		score += body.value_of_object
 		xp_bar_calc()
 		check_score()
-		body.queue_free()
+		#body.queue_free()

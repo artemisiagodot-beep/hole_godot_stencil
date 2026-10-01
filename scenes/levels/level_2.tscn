@@ -47,9 +47,11 @@ size = Vector3(20, 5, 20)
 process_mode = 3
 script = ExtResource("1_eqxsl")
 
-[node name="GameSystem" type="Node" parent="." unique_id=441562132 node_paths=PackedStringArray("level_2")]
+[node name="GameSystem" type="Node" parent="." unique_id=441562132 node_paths=PackedStringArray("level_2", "size", "xp_bar")]
 script = ExtResource("1_pbc48")
 level_2 = NodePath("..")
+size = NodePath("CanvasLayer/Control/HBoxContainer/Size")
+xp_bar = NodePath("CanvasLayer/Control/HBoxContainer/XPBar")
 metadata/_custom_type_script = "uid://cd01indl502mg"
 
 [node name="Timer" type="Timer" parent="GameSystem" unique_id=1252517893]
@@ -84,6 +86,35 @@ offset_right = 48.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 70
 text = "Left to collect:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameSystem/CanvasLayer/Control" unique_id=98552888]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -349.75
+offset_top = -156.0
+offset_right = 349.75
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Size" type="Label" parent="GameSystem/CanvasLayer/Control/HBoxContainer" unique_id=295073725]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Size: 1"
+
+[node name="XPBar" type="ProgressBar" parent="GameSystem/CanvasLayer/Control/HBoxContainer" unique_id=1386041999]
+custom_minimum_size = Vector2(450, 50)
+custom_maximum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+offset_transform_position = Vector2(0, 1.42)
+step = 1.0
 
 [node name="WinMenu" type="Control" parent="GameSystem/CanvasLayer" unique_id=1384130047]
 visible = false
@@ -178,6 +209,8 @@ shape = SubResource("BoxShape3D_wijl4")
 
 [node name="Barriers" type="StaticBody3D" parent="." unique_id=265637658]
 process_mode = 1
+collision_layer = 3
+collision_mask = 3
 
 [node name="Front" type="CollisionShape3D" parent="Barriers" unique_id=644333148]
 process_mode = 1
@@ -201,12 +234,12 @@ shape = SubResource("BoxShape3D_dtvub")
 
 [node name="Collector" type="Area3D" parent="." unique_id=1483481937]
 process_mode = 1
-collision_layer = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.1983862, 0)
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollectorCollider" type="CollisionShape3D" parent="Collector" unique_id=1842048789]
 process_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 shape = SubResource("BoxShape3D_r4m0b")
 debug_color = Color(0.9863375, 0, 0.32941782, 0.41960785)
 

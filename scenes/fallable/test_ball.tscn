@@ -1,25 +1,23 @@
 [gd_scene format=3 uid="uid://t20pfyc23a2w"]
 
 [ext_resource type="Script" uid="uid://d3xfkkgep56uy" path="res://scenes/fallable/test_ball.gd" id="1_26nax"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4m0b"]
-albedo_color = Color(0.63902384, 0.63902324, 5.7756904e-07, 1)
-metallic = 0.66
-metallic_specular = 0.15
-roughness = 0.18
+[ext_resource type="Material" uid="uid://dhfjnfl3u0ac3" path="res://materials/ball_1.material" id="2_k36j3"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hcuab"]
-material = SubResource("StandardMaterial3D_r4m0b")
+material = ExtResource("2_k36j3")
 radius = 0.4
 height = 0.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gb587"]
 radius = 0.4
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcuab"]
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="TestBall" type="RigidBody3D" unique_id=776585098 groups=["ball", "fallable"]]
 collision_layer = 2
 collision_mask = 3
-mass = 0.1
+mass = 5.0
 can_sleep = false
 freeze = true
 script = ExtResource("1_26nax")
@@ -29,3 +27,13 @@ mesh = SubResource("SphereMesh_hcuab")
 
 [node name="SphereCollider" type="CollisionShape3D" parent="." unique_id=634186949]
 shape = SubResource("SphereShape3D_gb587")
+
+[node name="Centre_of_Object" type="Area3D" parent="." unique_id=1011994068]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Centre_of_Object" unique_id=1878651988]
+shape = SubResource("BoxShape3D_hcuab")
+
+[connection signal="area_entered" from="Centre_of_Object" to="." method="_on_centre_of_object_area_entered"]

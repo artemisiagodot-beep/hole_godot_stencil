@@ -10,25 +10,7 @@ func _ready() -> void:
 	task.text = "Your task is collect " + str(pillars_to_collect)+ " pillars before time run out." 
 	counter.text = "Pillars to collect: " +str(pillars_to_collect)
 
-func check_score() -> void:
-	if score == 2:
-		hole.increase_size()
-	if score == 5: 
-		hole.increase_size()
-	if score == 10: 
-		hole.increase_size()
-	if score == 15: 
-		hole.increase_size()
-	if score == 20: 
-		hole.increase_size()
-	if score == 25: 
-		hole.increase_size()
-	if score == 30: 
-		hole.increase_size()
-	if score == 40: 
-		hole.increase_size()
-	if score == 50: 
-		hole.increase_size()
+
 
 func _on_collector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pillar"):
@@ -38,8 +20,11 @@ func _on_collector_body_entered(body: Node3D) -> void:
 			game_won = true
 			win_game()
 			level_2.stop_level()
+			await get_tree().create_timer(3.0).timeout
+			get_tree().call_deferred("change_scene_to_file", "uid://bqslavymdgbfo")
 			
 	if body.is_in_group("fallable"):
 		score += body.value_of_object
+		xp_bar_calc()
 		check_score()
-		body.queue_free()
+		#body.queue_free()

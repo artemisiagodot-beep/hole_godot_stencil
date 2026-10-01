@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://kgfi6i3m72mk" path="res://scenes/stacks/ball_stack.tscn" id="3_4nkto"]
 [ext_resource type="AudioStream" uid="uid://cgq5q2pbyjyq5" path="res://audio/Chiptune The Run Cut 30.wav" id="4_4nkto"]
 [ext_resource type="Script" uid="uid://c2wt7whgs300x" path="res://script/pause_menu.gd" id="5_fcfvj"]
+[ext_resource type="PackedScene" uid="uid://bhnkldckw4e2l" path="res://scenes/fallable/KayKit/building_a.scn" id="7_dga24"]
+[ext_resource type="PackedScene" uid="uid://b7t2n4drc310n" path="res://scenes/fallable/KayKit/building_b.scn" id="8_excbq"]
+[ext_resource type="PackedScene" uid="uid://c474v6as2s8vd" path="res://scenes/fallable/KayKit/road_junction.scn" id="8_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://yf1phey0mni7" path="res://scenes/fallable/KayKit/road_straight.scn" id="9_excbq"]
+[ext_resource type="PackedScene" uid="uid://dygl1di65jgfs" path="res://scenes/fallable/KayKit/building_c.scn" id="9_iav0o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aa2ju"]
 ground_bottom_color = Color(0, 0, 0, 1)
@@ -40,7 +45,7 @@ size = Vector3(20, 9.389648, 1)
 size = Vector3(1, 9.416992, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4m0b"]
-size = Vector3(20, 5, 20)
+size = Vector3(20, 3.8010254, 20)
 
 [node name="Level1" type="Node3D" unique_id=895028755 node_paths=PackedStringArray("game_system", "hole")]
 process_mode = 3
@@ -204,6 +209,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_wijl4")
 
 [node name="Barriers" type="StaticBody3D" parent="." unique_id=265637658]
+collision_layer = 3
+collision_mask = 3
 
 [node name="Front" type="CollisionShape3D" parent="Barriers" unique_id=644333148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -221,12 +228,12 @@ shape = SubResource("BoxShape3D_dtvub")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 shape = SubResource("BoxShape3D_dtvub")
 
-[node name="Collector" type="Area3D" parent="." unique_id=1483481937]
-collision_layer = 0
+[node name="Collector" type="Area3D" parent="." unique_id=1483481937 groups=["Below_Surface_Collector"]]
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollectorCollider" type="CollisionShape3D" parent="Collector" unique_id=1842048789]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.267272, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8667593, 0)
 shape = SubResource("BoxShape3D_r4m0b")
 debug_color = Color(0.9863375, 0, 0.32941782, 0.41960785)
 
@@ -335,6 +342,47 @@ grow_horizontal = 2
 grow_vertical = 0
 min_value = -72.0
 max_value = 6.0
+
+[node name="TestCity" type="Node3D" parent="." unique_id=1668278060]
+
+[node name="building_A" parent="." unique_id=434634919 instance=ExtResource("7_dga24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5895298, 0.034531713, -1.5426884)
+
+[node name="building_B" parent="." unique_id=2105520477 instance=ExtResource("8_excbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3104703, 0.034531593, -1.7126884)
+
+[node name="building_C" parent="." unique_id=1373833679 instance=ExtResource("9_iav0o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.6129115, 0.034531593, 2.2589731)
+
+[node name="building_C3" parent="." unique_id=1496218337 instance=ExtResource("9_iav0o")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5895295, 0.0045315996, 4.220894)
+
+[node name="building_C2" parent="." unique_id=2091177741 instance=ExtResource("9_iav0o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.2104704, 0.034531593, 2.2873116)
+
+[node name="road_straight" parent="." unique_id=1718785439 instance=ExtResource("9_excbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3104704, 0.034531593, 4.2873116)
+
+[node name="road_straight2" parent="." unique_id=2124811487 instance=ExtResource("9_excbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31047034, 0.034531593, 2.2873116)
+
+[node name="road_junction" parent="." unique_id=2117449208 instance=ExtResource("8_qxy0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31047034, 0.034531593, 0.28731155)
+
+[node name="road_straight3" parent="." unique_id=459517088 instance=ExtResource("9_excbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31047034, 0.034531593, -1.7126884)
+
+[node name="road_straight4" parent="." unique_id=1309699871 instance=ExtResource("9_excbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31047034, 0.004531592, -3.7126884)
+
+[node name="road_straight5" parent="." unique_id=2025641973 instance=ExtResource("9_excbq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.3104703, 0.0345316, 0.28731155)
+
+[node name="road_straight6" parent="." unique_id=15960364 instance=ExtResource("9_excbq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.3104706, 0.034531593, 0.28731155)
+
+[node name="road_straight7" parent="." unique_id=5031007 instance=ExtResource("9_excbq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6895297, 0.034531586, 0.28731155)
 
 [connection signal="timeout" from="GameSystem/Timer" to="GameSystem" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Collector" to="GameSystem" method="_on_collector_body_entered"]

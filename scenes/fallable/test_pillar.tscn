@@ -2,16 +2,23 @@
 
 [ext_resource type="Script" uid="uid://d3xfkkgep56uy" path="res://scenes/fallable/test_ball.gd" id="1_n0vxy"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga8jd"]
+albedo_color = Color(0.38738903, 0.38738897, 0.38738897, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_hcuab"]
+material = SubResource("StandardMaterial3D_ga8jd")
 size = Vector3(0.6, 5, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5gg3"]
 size = Vector3(0.6, 5, 0.6)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ho3jl"]
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="TestPillar" type="RigidBody3D" unique_id=776585098 groups=["fallable", "pillar"]]
 collision_layer = 2
 collision_mask = 3
-mass = 0.1
+mass = 100.0
 can_sleep = false
 freeze = true
 script = ExtResource("1_n0vxy")
@@ -24,3 +31,14 @@ mesh = SubResource("BoxMesh_hcuab")
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=1373001766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_o5gg3")
+
+[node name="Centre_of_Object" type="Area3D" parent="." unique_id=1175205905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Centre_of_Object" unique_id=490713077]
+shape = SubResource("BoxShape3D_ho3jl")
+
+[connection signal="area_entered" from="Centre_of_Object" to="." method="_on_centre_of_object_area_entered"]
