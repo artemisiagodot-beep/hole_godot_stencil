@@ -9,8 +9,12 @@ class_name GameSystem
 @onready var control: Control = $CanvasLayer/Control
 @onready var start_menu: Control = $CanvasLayer/StartMenu
 @onready var task: Label = $CanvasLayer/StartMenu/Task
-@export var update_label_interval: int = 1
+@onready var size: Label = $GameSystem/CanvasLayer/Control/HBoxContainer/Size
+@onready var xp_bar: ProgressBar = $GameSystem/CanvasLayer/Control/HBoxContainer/XPBar
 
+
+@export var update_label_interval: int = 1
+var hole_size: int = 1
 var current_time_passed: float = 0.0
 var player_moved : bool = false:
 	set(value):
@@ -29,7 +33,6 @@ func _physics_process(delta: float) -> void:
 		pass
 
 
-
 func win_game()-> void:
 	time.stop()
 	control.visible = false
@@ -40,3 +43,10 @@ func restart_game() -> void:
 
 func _on_timer_timeout() -> void:
 	restart_game()
+	
+func size_set_hole() -> void:
+	hole_size += 1
+	size.text = "Size: " +str(hole_size)
+
+func xp_bar_calc() -> void:
+	pass

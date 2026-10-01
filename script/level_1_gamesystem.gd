@@ -5,20 +5,21 @@ extends GameSystem
 @export var balls_to_collect = 25
 @export var level_1: Node3D
 
+
 var score : int = 0
 var game_won: bool = false
 
 func _ready() -> void:
-	task.text = "Your task is collect " + str(balls_to_collect)+ "balls in " + str(time.wait_time) +"seconds." 
+	task.text = "Collect " + str(balls_to_collect)+ " balls before time run out." 
 	counter.text = "Left to collect: " +str(balls_to_collect)
 
 func check_score() -> void:
 	if score == 5:
-		hole.increase_size()
+		update_score()
 	if score == 10: 
-		hole.increase_size()
+		update_score()
 	if score == 17: 
-		hole.increase_size()
+		update_score()
 
 
 func _on_collector_body_entered(body: Node3D) -> void:
@@ -35,3 +36,7 @@ func _on_collector_body_entered(body: Node3D) -> void:
 		score += body.value_of_object
 		check_score()
 		body.queue_free()
+
+func update_score() -> void:
+	size_set_hole()
+	hole.increase_size()
