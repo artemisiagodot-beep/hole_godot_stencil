@@ -5,10 +5,9 @@ extends GameSystem
 @export var pillars_to_collect : int = 5
 @onready var counter: Label = $CanvasLayer/Control/Counter
 var game_won: bool = false
-var score: int = 0
 
 func _ready() -> void:
-	task.text = "Your task is collect " + str(pillars_to_collect)+ "pillars in " + str(time.wait_time) +"seconds." 
+	task.text = "Your task is collect " + str(pillars_to_collect)+ " pillars before time run out." 
 	counter.text = "Pillars to collect: " +str(pillars_to_collect)
 
 func check_score() -> void:

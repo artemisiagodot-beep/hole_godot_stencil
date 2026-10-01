@@ -9,11 +9,21 @@ class_name GameSystem
 @onready var control: Control = $CanvasLayer/Control
 @onready var start_menu: Control = $CanvasLayer/StartMenu
 @onready var task: Label = $CanvasLayer/StartMenu/Task
-@onready var size: Label = $GameSystem/CanvasLayer/Control/HBoxContainer/Size
-@onready var xp_bar: ProgressBar = $GameSystem/CanvasLayer/Control/HBoxContainer/XPBar
-
-
+@export var size: Label
+@export var xp_bar: ProgressBar
 @export var update_label_interval: int = 1
+
+@export var size_2_treshold: int = 5
+@export var size_3_treshold: int = 10
+@export var size_4_treshold: int = 15
+@export var size_5_treshold: int = 20
+@export var size_6_treshold: int = 25
+@export var size_7_treshold: int = 30
+@export var size_8_treshold: int = 40
+@export var size_9_treshold: int = 50
+
+var current_treshold: int = size_2_treshold
+var score : int = 0
 var hole_size: int = 1
 var current_time_passed: float = 0.0
 var player_moved : bool = false:
@@ -23,6 +33,7 @@ var player_moved : bool = false:
 			start_menu.visible = false
 		player_moved = value
 
+
 func _physics_process(delta: float) -> void:
 	if player_moved == true:
 		current_time_passed += delta
@@ -31,6 +42,35 @@ func _physics_process(delta: float) -> void:
 			timer.text = "%.2f" % time.time_left
 	else:
 		pass
+
+func check_score() -> void:
+	if score == size_2_treshold:
+		update_score()
+		current_treshold = size_3_treshold
+	if score == size_3_treshold:
+		update_score()
+		current_treshold = size_4_treshold
+	if score == size_4_treshold:
+		update_score()
+		current_treshold = size_5_treshold
+	if score == size_5_treshold:
+		update_score()
+		current_treshold = size_6_treshold
+	if score == size_6_treshold:
+		update_score()
+		current_treshold = size_7_treshold
+	if score == size_7_treshold:
+		update_score()
+		current_treshold = size_8_treshold
+	if score == size_8_treshold:
+		update_score()
+		current_treshold = size_9_treshold
+	if score == size_9_treshold:
+		update_score()
+
+func update_score() -> void:
+	size_set_hole()
+	hole.increase_size()
 
 
 func win_game()-> void:
@@ -49,4 +89,7 @@ func size_set_hole() -> void:
 	size.text = "Size: " +str(hole_size)
 
 func xp_bar_calc() -> void:
-	pass
+	xp_bar.max_value = current_treshold
+	xp_bar.value = score
+	print(str(current_treshold) + ' ' + str(score))
+	

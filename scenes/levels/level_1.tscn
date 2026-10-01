@@ -48,10 +48,12 @@ script = ExtResource("1_fcfvj")
 game_system = NodePath("GameSystem")
 hole = NodePath("Hole")
 
-[node name="GameSystem" type="Node" parent="." unique_id=441562132 node_paths=PackedStringArray("level_1")]
+[node name="GameSystem" type="Node" parent="." unique_id=441562132 node_paths=PackedStringArray("level_1", "size", "xp_bar")]
 process_mode = 1
 script = ExtResource("1_rus8k")
 level_1 = NodePath("..")
+size = NodePath("CanvasLayer/Control/HBoxContainer/Size")
+xp_bar = NodePath("CanvasLayer/Control/HBoxContainer/XPBar")
 metadata/_custom_type_script = "uid://cd01indl502mg"
 
 [node name="Timer" type="Timer" parent="GameSystem" unique_id=1252517893]
@@ -105,7 +107,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
-text = "Size: "
+text = "Size: 1"
 
 [node name="XPBar" type="ProgressBar" parent="GameSystem/CanvasLayer/Control/HBoxContainer" unique_id=1248333208]
 custom_minimum_size = Vector2(450, 50)
